@@ -6,6 +6,7 @@ module.exports = {
     fontFamily: {
       cormorant: ['"Cormorant Garamond", serif'],
       catamaran: ['"Catamaran", sans-serif'],
+      ephesis: ['"Ephesis", cursive'],
     },
     fontSize: {
       xxs: '0.65rem',
