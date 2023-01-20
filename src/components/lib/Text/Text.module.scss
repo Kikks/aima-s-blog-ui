@@ -1,0 +1,15 @@
+.body1 {
+  @apply font-catamaran text-sm md:text-base;
+}
+
+.body2 {
+  @apply font-catamaran text-base md:text-lg;
+}
+
+.subheading {
+  @apply font-catamaran text-lg md:text-xl;
+}
+
+.caption {
+  @apply font-catamaran text-xs md:text-sm;
+}

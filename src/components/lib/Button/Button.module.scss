@@ -1,0 +1,33 @@
+.base {
+  @apply rounded-md font-catamaran font-semibold transition-all
+  disabled:hover:cursor-not-allowed;
+}
+
+.size {
+  &__small {
+    @apply min-w-[120px] px-3 py-3 text-sm 
+    lg:min-w-[150px] lg:py-4;
+  }
+
+  &__medium {
+    @apply min-w-[150px] px-5 py-4 
+    text-base lg:min-w-[200px] lg:py-3;
+  }
+
+  &__large {
+    @apply min-w-[250px] px-3 py-2 text-base 
+    lg:min-w-[350px] lg:py-3;
+  }
+}
+
+.variant {
+  &__solid {
+    @apply border border-transparent bg-primary-main text-white hover:bg-primary-main 
+    disabled:bg-gray-300 disabled:text-gray-500;
+  }
+
+  &__outline {
+    @apply border border-primary-main bg-transparent text-aima-black
+    hover:bg-primary-ligtht disabled:border-gray-500 disabled:text-gray-500;
+  }
+}

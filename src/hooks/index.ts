@@ -4,4 +4,5 @@ export { default as useDebounce } from './useDebounce';
 export { default as useEffectOnce } from './useEffectOnce';
 export { default as useHandleOutsideClicks } from './useHandleOutsideClicks';
 export { default as useMediaQuery } from './useMediaQuery';
+export { default as useScrollPosition } from './useScrollPosition';
 export { default as useToggle } from './useToggle';

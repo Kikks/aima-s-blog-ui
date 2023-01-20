@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-catamaran text-aima-black;
+  @apply bg-aima-white font-catamaran text-aima-black;
 }
 
 /* Removes the outline color on focus that Flowbite adds by default */
