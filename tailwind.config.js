@@ -28,7 +28,7 @@ module.exports = {
         primary: {
           main: '#F44500',
           lighter: '#FFEBD3',
-          ligtht: '#FFDDB6',
+          light: '#FFDDB6',
           border: '#FAA888',
           border2: '#FC951F',
           bg: '#FFF5EA',

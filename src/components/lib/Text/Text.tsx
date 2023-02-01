@@ -17,11 +17,7 @@ const Text: FC<PropsWithChildren<TextProps>> = ({
     default: '',
   });
 
-  return (
-    <p className={`${textClassName} ${className || ''} leading-relaxed`}>
-      {children}
-    </p>
-  );
+  return <p className={`${textClassName} ${className || ''}`}>{children}</p>;
 };
 
 export default Text;

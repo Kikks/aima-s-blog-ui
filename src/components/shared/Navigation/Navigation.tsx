@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,15 +15,16 @@ const Navigation: FC<NavigationProps> = ({ onMenuClicked }) => {
   const { pathname } = useRouter();
   const scrollPosition = useScrollPosition();
   const mediumScreenUp = useMediaQuery('(min-width: 768px)');
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
-    <nav className="sticky top-0 left-0 flex w-full flex-col items-center gap-5 bg-white p-5 shadow-lg shadow-gray-100 md:static md:gap-7 md:p-10">
+    <nav className="sticky top-0 left-0 z-[1000] flex w-full flex-col items-center gap-5 bg-white p-5 shadow-lg shadow-gray-100 md:static md:gap-7 md:p-10">
       <Link href="/">
         <figure
           className="relative h-10 w-24 duration-200 lg:h-16 lg:w-36"
           style={{
             marginTop: mediumScreenUp
-              ? 0
+              ? '0px'
               : `${`${
                   scrollPosition > 200 ? -60 : (scrollPosition / 200) * -60
                 }px`}`,
@@ -47,7 +49,7 @@ const Navigation: FC<NavigationProps> = ({ onMenuClicked }) => {
           <Link key={index} href={link.url} passHref>
             <a
               className={`text-sm uppercase hover:text-primary-main ${
-                pathname.startsWith(link.url)
+                pathname === link.url
                   ? 'font-medium text-primary-main'
                   : 'font-light'
               }`}
@@ -56,6 +58,15 @@ const Navigation: FC<NavigationProps> = ({ onMenuClicked }) => {
             </a>
           </Link>
         ))}
+
+        {!isAuthenticated && (
+          <button
+            className="text-sm uppercase hover:text-primary-main"
+            onClick={() => loginWithRedirect()}
+          >
+            Log In
+          </button>
+        )}
       </div>
     </nav>
   );

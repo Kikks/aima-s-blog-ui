@@ -1,0 +1,37 @@
+.wrapper {
+  @apply my-4 flex w-full gap-4;
+
+  & div {
+    @apply flex w-full;
+  }
+}
+
+.container {
+  @apply flex w-full items-center justify-between gap-2;
+
+  & li:first-child {
+    @apply mr-auto;
+  }
+
+  & li:last-child {
+    @apply ml-auto;
+  }
+}
+
+.page {
+  @apply flex h-7 w-7 items-center justify-center rounded-full border border-primary-main text-xs md:h-10 md:w-10;
+}
+
+.active__page {
+  @apply flex h-7 w-7 items-center justify-center bg-primary-main text-xs 
+  text-white md:h-10 md:w-10;
+}
+
+.navigator {
+  @apply flex h-10 cursor-pointer items-center justify-center gap-2 px-2 text-primary-main 
+  disabled:cursor-not-allowed;
+
+  &:disabled {
+    @apply text-primary-light;
+  }
+}

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Button from '@/components/lib/Button';
 import Heading from '@/components/lib/Heading';
@@ -6,6 +6,7 @@ import Text from '@/components/lib/Text';
 import Meta from '@/templates/Meta';
 
 const NotFound = () => {
+  const router = useRouter();
   return (
     <>
       <Meta title="404 - Not found" description="Oops! Page not found. " />
@@ -23,11 +24,13 @@ const NotFound = () => {
           </Text>
         </div>
 
-        <Link href="/">
-          <Button className="w-full max-w-[250px] md:mx-auto" size="medium">
-            Go back home
-          </Button>
-        </Link>
+        <Button
+          className="w-full max-w-[250px] md:mx-auto"
+          size="medium"
+          onClick={() => router.push('/')}
+        >
+          Go back home
+        </Button>
       </section>
     </>
   );

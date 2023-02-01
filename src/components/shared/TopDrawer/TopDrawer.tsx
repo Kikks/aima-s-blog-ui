@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import type { FC } from 'react';
@@ -9,6 +10,7 @@ import type TopDrawerProps from './TopDrawer.props';
 
 const TopDrawer: FC<TopDrawerProps> = ({ isOpen, onClose }) => {
   const [show, setShow] = useState(false);
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     setTimeout(() => {
@@ -26,12 +28,12 @@ const TopDrawer: FC<TopDrawerProps> = ({ isOpen, onClose }) => {
   return isOpen ? (
     <>
       <div
-        className="fixed top-0 left-0 h-screen w-screen bg-black/20"
+        className="fixed top-0 left-0 z-[1500] h-screen w-screen bg-black/20"
         onClick={handleClose}
       />
 
       <aside
-        className={`fixed top-0 left-0 z-50 flex max-h-screen w-screen flex-col items-center gap-5 overflow-y-auto bg-white pt-10 pb-28 shadow-lg duration-500 ${
+        className={`fixed top-0 left-0 z-[2000] flex max-h-screen w-screen flex-col items-center gap-5 overflow-y-auto bg-white pt-10 pb-28 shadow-lg duration-500 ${
           show ? 'translate-y-0' : 'translate-y-[-150vh]'
         }`}
       >
@@ -52,6 +54,12 @@ const TopDrawer: FC<TopDrawerProps> = ({ isOpen, onClose }) => {
             </a>
           </Link>
         ))}
+
+        {!isAuthenticated && (
+          <button className="text-center" onClick={() => loginWithRedirect()}>
+            Log In
+          </button>
+        )}
       </aside>
     </>
   ) : (

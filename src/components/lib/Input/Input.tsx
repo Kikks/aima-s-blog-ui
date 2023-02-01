@@ -14,7 +14,7 @@ const Input: FC<InputProps> = ({ label, id, error, helperText, ...rest }) => {
 
       <div className="w-full">
         <div
-          className={`mx-auto flex w-full max-w-[700px] items-center overflow-hidden rounded-sm border bg-[#fefefe] focus-within:border-primary-main ${
+          className={`mx-auto flex w-full items-center overflow-hidden rounded-md border bg-[#fefefe] focus-within:border-primary-main ${
             error ? 'border-red-500' : 'border-gray-300'
           }`}
         >

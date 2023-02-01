@@ -6,7 +6,7 @@
 .size {
   &__small {
     @apply min-w-[120px] px-3 py-3 text-sm 
-    lg:min-w-[150px] lg:py-4;
+    lg:min-w-[150px] lg:py-3;
   }
 
   &__medium {
@@ -28,6 +28,6 @@
 
   &__outline {
     @apply border border-primary-main bg-transparent text-aima-black
-    hover:bg-primary-ligtht disabled:border-gray-500 disabled:text-gray-500;
+    hover:bg-primary-light disabled:border-gray-500 disabled:text-gray-500;
   }
 }

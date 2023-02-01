@@ -6,6 +6,7 @@ const Heading = ({
   variant = 'h2',
   children,
   className,
+  decorated,
   ...rest
 }: HeadingProps<'h1' | 'h2' | 'h3'>) => {
   const Component = variant || 'h2';
@@ -18,7 +19,12 @@ const Heading = ({
   });
 
   return (
-    <Component className={`${headingClassName} ${className || ''}`} {...rest}>
+    <Component
+      className={`${headingClassName} ${className || ''} ${
+        decorated ? styles.decorated : ''
+      }`}
+      {...rest}
+    >
       {children}
     </Component>
   );

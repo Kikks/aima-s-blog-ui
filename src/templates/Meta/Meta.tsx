@@ -53,7 +53,9 @@ const Meta = (props: MetaProps) => {
           url: props.canonical,
           locale: appConfig.locale,
           site_name: appConfig.site_name,
+          images: props.images,
         }}
+        twitter={props.twitter}
       />
     </>
   );
