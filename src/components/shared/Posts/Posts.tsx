@@ -55,7 +55,7 @@ const Posts: FC<PostsProps> = ({
               ) : (
                 (posts || []).map((post, index) => (
                   <motion.div
-                    className="col-span-1"
+                    className="col-span-1 self-stretch"
                     key={index}
                     whileInView={{ opacity: 1, translateY: 0 }}
                     initial={{ opacity: 0, translateY: 50 }}

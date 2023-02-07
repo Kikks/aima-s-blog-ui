@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import Avatar from '@/components/lib/Avatar';
@@ -12,6 +12,7 @@ import Loader from '@/components/lib/Loader';
 import Pagination from '@/components/lib/Pagination';
 import Text from '@/components/lib/Text';
 import TextArea from '@/components/lib/TextArea';
+import { UserContext } from '@/contexts/user';
 import type {
   Comment as IComment,
   Meta,
@@ -30,24 +31,14 @@ const CommentsModal: FC<CommentsModalProps> = ({
   toggleOpen,
   postId,
   onCreateCommentSuccess,
+  onDeleteCommentSuccess,
 }) => {
-  const [user, setUser] = useState({
-    name: '',
-    image: '',
-  });
+  const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState('');
   const [comments, setComments] = useState<(IComment | null)[]>([]);
   const [meta, setMeta] = useState<Meta>(defaultMeta);
   const [page, setPage] = useState(1);
   const [showEditor, toggleShowEditor] = useToggle(false);
-
-  useEffect(() => {
-    const rawData = localStorage.getItem('user');
-
-    if (rawData) {
-      setUser(JSON.parse(rawData));
-    }
-  });
 
   const { loading: commentsLoading, refetch: refetchComments } = useQuery(
     GET_POST_COMMENTS,
@@ -168,14 +159,26 @@ const CommentsModal: FC<CommentsModalProps> = ({
               ) : (
                 comments.map((item, index) => (
                   // @ts-ignore
-                  <Comment key={index} {...item} />
+                  <Comment
+                    key={index}
+                    {...item}
+                    refetch={() => {
+                      refetchComments();
+                      if (onDeleteCommentSuccess) onDeleteCommentSuccess();
+                    }}
+                  />
                 ))
               )}
             </>
           )}
 
           <div className="mt-auto w-full">
-            <Pagination count={meta.pages || 0} page={page} setPage={setPage} />
+            <Pagination
+              count={meta.pages || 0}
+              page={page}
+              setPage={setPage}
+              shortText
+            />
           </div>
         </div>
       </motion.div>

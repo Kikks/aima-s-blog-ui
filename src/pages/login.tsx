@@ -4,20 +4,22 @@ import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Text from '@/components/lib/Text';
+import { UserContext } from '@/contexts/user';
 import { LOGIN } from '@/graphql/mutations/user.mutations';
 
 const Login = () => {
   const router = useRouter();
+  const { login } = useContext(UserContext);
   const [errorOccured, setErrorOccured] = useState(false);
   const { logout } = useAuth0();
 
   const [mutate] = useMutation(LOGIN, {
     onCompleted(response) {
       if (response?.login) {
-        localStorage.setItem('user', JSON.stringify(response?.login));
+        login(response.login);
       }
 
       router.push('/');

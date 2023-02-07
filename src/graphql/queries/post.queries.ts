@@ -16,6 +16,7 @@ export const GET_FEATURED_POSTS = gql(`
           id
           name
         }
+        publishedAt
         createdAt
         updatedAt
       }
@@ -51,6 +52,7 @@ export const GET_POSTS = gql(`
           name
         }
         isPublished
+        publishedAt
         createdAt
         updatedAt
       }
@@ -79,6 +81,7 @@ export const GET_POST = gql(`
           name
         }
         isPublished
+        publishedAt
         createdAt
         updatedAt
       }

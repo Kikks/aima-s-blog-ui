@@ -16,8 +16,8 @@ const Category: FC<CategoryProps> = ({ id, name, image }) => {
           src={image || '/android-chrome-192x192.png'}
           alt=""
           layout="fill"
-          objectFit="contain"
-          className="h-full w-full object-contain duration-500 group-hover:rotate-[3deg] group-hover:scale-110"
+          objectFit="cover"
+          className="h-full w-full object-cover duration-500 group-hover:rotate-[3deg] group-hover:scale-110"
           quality={100}
         />
       </figure>

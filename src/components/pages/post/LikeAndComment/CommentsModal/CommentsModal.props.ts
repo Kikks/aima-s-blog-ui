@@ -3,4 +3,5 @@ export default interface CommentsModalProps {
   open: boolean;
   toggleOpen: () => void;
   onCreateCommentSuccess?: () => void;
+  onDeleteCommentSuccess?: () => void;
 }

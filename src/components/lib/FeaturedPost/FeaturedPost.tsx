@@ -63,7 +63,7 @@ const FeaturedPost: FC<FeaturedPostProps> = ({
         </motion.div>
 
         <motion.div variants={childrenVariants}>
-          <Heading>{post?.title}</Heading>
+          <Heading className="leading-tight">{post?.title}</Heading>
         </motion.div>
 
         <motion.div variants={childrenVariants}>

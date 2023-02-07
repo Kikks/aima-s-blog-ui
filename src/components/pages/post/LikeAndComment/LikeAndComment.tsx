@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@apollo/client';
+import { useAuth0 } from '@auth0/auth0-react';
 import { Icon } from '@iconify/react';
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Loader from '@/components/lib/Loader';
 import Text from '@/components/lib/Text';
+import { UserContext } from '@/contexts/user';
 import type { Like } from '@/graphql/__generated__/graphql';
 import { LIKE_POST } from '@/graphql/mutations/likeAndComment.mutations';
 import { GET_USER_LIKE_FOR_POST } from '@/graphql/queries/likeAndComment.queries';
@@ -20,6 +22,8 @@ const LikeAndComment: FC<LikeAndCommentProps> = ({
   setComments,
   setLikes,
 }) => {
+  const { user } = useContext(UserContext);
+  const { loginWithRedirect } = useAuth0();
   const [like, setLike] = useState<Like | null>(null);
 
   const [open, toggleOpen] = useToggle(false);
@@ -44,17 +48,32 @@ const LikeAndComment: FC<LikeAndCommentProps> = ({
   });
 
   const handleLikePost = () => {
-    mutate({
-      variables: { postId },
-    });
+    if (user) {
+      mutate({
+        variables: { postId },
+      });
+
+      return;
+    }
+
+    loginWithRedirect();
   };
 
   const handleShowCommentModal = () => {
-    toggleOpen();
+    if (user) {
+      toggleOpen();
+      return;
+    }
+
+    loginWithRedirect();
   };
 
   const handleIncreaseCommentCount = () => {
     setComments(commentsCount + 1);
+  };
+
+  const handleReduceCommentCount = () => {
+    setComments(commentsCount - 1);
   };
 
   return (
@@ -103,6 +122,7 @@ const LikeAndComment: FC<LikeAndCommentProps> = ({
         toggleOpen={toggleOpen}
         postId={postId}
         onCreateCommentSuccess={handleIncreaseCommentCount}
+        onDeleteCommentSuccess={handleReduceCommentCount}
       />
     </>
   );

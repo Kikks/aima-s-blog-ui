@@ -16,10 +16,10 @@ const Post: FC<PostProps> = ({
   category,
   preview,
   coverImage,
-  createdAt,
+  publishedAt,
 }) => {
   return (
-    <article className="group flex w-full flex-col items-start gap-5  rounded-md bg-white p-5 shadow-md">
+    <article className="group flex h-full w-full flex-col items-start gap-5  rounded-md bg-white p-5 shadow-md">
       <figure className="relative aspect-video w-full overflow-hidden">
         <Image
           src={coverImage || '/assets/images/logo.png'}
@@ -50,7 +50,7 @@ const Post: FC<PostProps> = ({
           </Link>
 
           <Text variant="caption" className="text-primary-main">
-            {moment(Number(createdAt || '')).format('MMMM DD, YYYY')}
+            {moment(Number(publishedAt || '')).format('MMMM DD, YYYY')}
           </Text>
         </div>
       </div>

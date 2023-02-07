@@ -10,6 +10,7 @@ type IPost = {
   body?: string | null;
   category?: ICategory | null;
   isPublished?: boolean | null;
+  publishedAt?: string | null;
   createdAt?: string | null;
   updatedAt?: string | null;
 };
