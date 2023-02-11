@@ -35,6 +35,13 @@ export const getServerSideProps: GetServerSideProps<
       GET_FEATURED_CATEGORIES
     );
 
+    if (featuredPostsResponse?.getFeaturedPosts) {
+      featuredPostsResponse.getFeaturedPosts =
+        featuredPostsResponse.getFeaturedPosts.sort(
+          (a, b) => (a?.index || 0) - (b?.index || 0)
+        ) || [];
+    }
+
     return {
       props: {
         featuredPostsResponse,

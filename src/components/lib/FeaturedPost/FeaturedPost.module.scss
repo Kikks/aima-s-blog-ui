@@ -52,4 +52,36 @@
       @apply border-secondary-border hover:bg-secondary-main hover:text-white;
     }
   }
+
+  &__onion {
+    @apply bg-[#FBDFFF];
+
+    & button {
+      @apply border-[#540660] hover:bg-[#7e108f] hover:text-white;
+    }
+  }
+
+  &__emerald {
+    @apply bg-[#ADF5D3];
+
+    & button {
+      @apply border-[#0F9857] hover:bg-[#11b468] hover:text-white;
+    }
+  }
+
+  &__blush {
+    @apply bg-[#FFCFCF];
+
+    & button {
+      @apply border-[#9B0808] hover:bg-[#db1313] hover:text-white;
+    }
+  }
+
+  &__heliotrope {
+    @apply bg-[#DEDFFF];
+
+    & button {
+      @apply border-[#0E14B0] hover:bg-[#1219e1] hover:text-white;
+    }
+  }
 }

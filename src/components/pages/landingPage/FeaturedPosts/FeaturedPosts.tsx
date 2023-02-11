@@ -16,7 +16,7 @@ const FeaturedPosts: FC<FeaturedPostsProps> = ({ featuredPosts }) => {
             key={index}
             post={featuredPost?.post || null}
             theme={featuredPost?.theme || null}
-            variant={index === 0 ? 'long' : 'short'}
+            variant={featuredPost?.index === 0 ? 'long' : 'short'}
           />
         ))}
       </div>

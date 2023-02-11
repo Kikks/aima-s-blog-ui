@@ -41,6 +41,10 @@ const FeaturedPost: FC<FeaturedPostProps> = ({
   const postTheme = match(theme?.name || '', {
     cool__love: styles['theme__cool-love'],
     passion: styles.theme__passion,
+    onion: styles.theme__onion,
+    emerald: styles.theme__emerald,
+    blush: styles.theme__blush,
+    heliotrope: styles.theme__heliotrope,
     default: styles['theme__cool-love'] || '',
   });
 

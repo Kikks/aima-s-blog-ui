@@ -3,6 +3,7 @@ import { gql } from '../__generated__';
 export const GET_FEATURED_POSTS = gql(`
   query featuredPosts {
     getFeaturedPosts {
+      index
       theme {
         name
       }

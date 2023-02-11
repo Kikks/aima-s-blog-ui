@@ -20,7 +20,7 @@ const PostBody: FC<PostBodyProps> = ({ body }) => {
               className: 'border-0',
             },
             image: {
-              className: 'w-full mx-auto max-w-screen-md',
+              className: 'w-full mx-auto max-w-screen-sm',
               actionsClassNames: {
                 stretched: 'w-full h-80 object-cover',
                 withBorder: 'border border-2',
