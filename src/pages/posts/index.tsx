@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import Pagination from '@/components/lib/Pagination';
@@ -12,6 +12,7 @@ import type IPost from '@/types/Post.type';
 import { defaultMeta } from '@/utils/constants';
 
 const Allposts = () => {
+  const router = useRouter();
   const [posts, setPosts] = useState<(IPost | null)[]>([]);
   const [page, setPage] = useState(1);
   const [meta, setMeta] = useState<RequestMeta>(defaultMeta);
