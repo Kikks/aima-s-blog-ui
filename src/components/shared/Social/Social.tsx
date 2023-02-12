@@ -17,13 +17,15 @@ const Social = () => {
         </div>
 
         <div className="flex items-center gap-5">
-          <SocialLink icon="uil:facebook-f" url="https://facebook.com" />
-          <SocialLink icon="ri:twitter-fill" url="https://twitter.com" />
           <SocialLink
-            icon="fa6-brands:pinterest-p"
-            url="https://pinterest.com"
+            icon="ri:twitter-fill"
+            url="https://twitter.com/ai_ma_lohi"
           />
-          <SocialLink icon="ion:logo-instagram" url="https://instagram.com" />
+
+          <SocialLink
+            icon="ion:logo-instagram"
+            url="https://www.instagram.com/aimascorner/"
+          />
         </div>
       </div>
     </section>
