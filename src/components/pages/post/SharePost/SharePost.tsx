@@ -19,7 +19,7 @@ const SharePost = () => {
     if (typeof window !== 'undefined') {
       window.open(
         `whatsapp://send?text=${encodeURI(
-          `Check out this amazing article from Aima's Corner:\n${window.location.href}`
+          `Check out this amazing article from Aima's Writing:\n${window.location.href}`
         )}`
       );
     }
@@ -29,7 +29,7 @@ const SharePost = () => {
     if (typeof window !== 'undefined') {
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURI(
-          `Check out this amazing article from Aima's Corner:\n${window.location.href}`
+          `Check out this amazing article from Aima's Writing:\n${window.location.href}`
         )}`
       );
     }

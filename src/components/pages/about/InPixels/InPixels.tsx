@@ -10,7 +10,7 @@ const InPixels = () => {
     <section className="w-full bg-aima-white">
       <div className="container grid justify-items-center gap-5 md:gap-10">
         <Heading variant="h3" className="text-center">
-          AIMA’S CORNER - <span className="font-ephesis">In Pixels</span>
+          AIMA’S WRITING - <span className="font-ephesis">In Pixels</span>
         </Heading>
 
         <div className="grid w-full grid-cols-1 gap-10 md:grid-cols-3 md:gap-5 lg:gap-10">

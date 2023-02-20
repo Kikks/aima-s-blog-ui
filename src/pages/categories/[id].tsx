@@ -79,7 +79,7 @@ const CategoryPosts: NextPage<CategoryPageProps> = ({
     <PageLayout
       meta={
         <Meta
-          title={`${capitalizeFirstLetter(categoryName)} | Aima's Corner`}
+          title={`${capitalizeFirstLetter(categoryName)} | Aima's Writing`}
           description={`All posts belonging to the ${categoryName} category`}
           images={[
             {

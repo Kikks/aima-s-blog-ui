@@ -47,12 +47,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <AppContext>
       <Meta
-        title="Aima's Corner"
+        title="Aima's Writing"
         description="Welcome to my lifestyle blog"
         images={[
           {
             url: '/assets/images/logo.png',
-            alt: "Aima's Corner Logo",
+            alt: "Aima's Writing Logo",
           },
         ]}
         twitter={{

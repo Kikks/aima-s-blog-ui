@@ -47,7 +47,7 @@ const Categories: NextPage<CategoryPageProps> = ({ categoryResponse }) => {
     <PageLayout
       meta={
         <Meta
-          title="Categories | Aima's Corner"
+          title="Categories | Aima's Writing"
           description="A lsit of all catgegories in this blog."
         />
       }

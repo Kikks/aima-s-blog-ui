@@ -33,8 +33,8 @@ const Allposts = () => {
     <PageLayout
       meta={
         <Meta
-          title="All Posts | Aima's Corner"
-          description="All posts on Aima's Corner"
+          title="All Posts | Aima's Writing"
+          description="All posts on Aima's Writing"
         />
       }
     >

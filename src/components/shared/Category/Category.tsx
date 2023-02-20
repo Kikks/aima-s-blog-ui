@@ -13,16 +13,22 @@ const Category: FC<CategoryProps> = ({ id, name, image }) => {
     <div className="relative grid aspect-square w-full place-items-center overflow-hidden rounded-md p-10">
       <figure className="absolute top-0 left-0 z-0 h-full w-full overflow-hidden">
         <Image
-          src={image || '/android-chrome-192x192.png'}
+          src={image || '/assets/images/logo.png'}
           alt=""
           layout="fill"
-          objectFit="cover"
-          className="h-full w-full object-cover duration-500 group-hover:rotate-[3deg] group-hover:scale-110"
+          objectFit={image ? 'cover' : 'contain'}
+          className={`h-full w-full duration-500 group-hover:rotate-[3deg] group-hover:scale-110 ${
+            image ? 'object-cover' : 'object-contain'
+          }`}
           quality={100}
         />
       </figure>
 
-      <div className="absolute top-0 left-0 z-0 h-full w-full overflow-hidden bg-primary-main/50"></div>
+      <div
+        className={`absolute top-0 left-0 z-0 h-full w-full overflow-hidden ${
+          image ? 'bg-primary-main/50' : 'bg-primary-main/90'
+        }`}
+      ></div>
 
       <div className="z-[5] grid w-full justify-items-center gap-5 text-center">
         <Heading

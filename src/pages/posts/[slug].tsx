@@ -92,7 +92,7 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
     <PageLayout
       meta={
         <Meta
-          title={`${capitalizeFirstLetter(postTitle)} | Aima's Corner`}
+          title={`${capitalizeFirstLetter(postTitle)} | Aima's Writing`}
           description={postPreview}
           images={[
             {

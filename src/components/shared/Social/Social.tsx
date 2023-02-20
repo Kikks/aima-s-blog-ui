@@ -26,6 +26,16 @@ const Social = () => {
             icon="ion:logo-instagram"
             url="https://www.instagram.com/aimascorner/"
           />
+
+          <SocialLink
+            icon="mdi:email"
+            url="mailto:mailto:therealaimascorner@gmail.com"
+          />
+
+          <SocialLink
+            icon="material-symbols:call-sharp"
+            url="tel:+234 704 161 8825"
+          />
         </div>
       </div>
     </section>

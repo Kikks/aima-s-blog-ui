@@ -109,7 +109,7 @@ const Subscribe = () => {
           Stay motivated with our weekly post in your inbox{' '}
         </Heading>
 
-        <Text>Subscribe to the Aima’s Corner newsletter</Text>
+        <Text>Subscribe to the Aima’s Writing newsletter</Text>
 
         <MailchimpSubscribe
           url={process.env.NEXT_PUBLIC_MAILCHIMP_URL as string}

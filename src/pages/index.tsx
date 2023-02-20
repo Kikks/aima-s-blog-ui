@@ -73,7 +73,7 @@ const Index: NextPage<HomePageProps> = ({
 
   return (
     <PageLayout
-      meta={<Meta title="Aima's Corner | My Lifestyle Blog" description="" />}
+      meta={<Meta title="Aima's Writing | My Lifestyle Blog" description="" />}
     >
       <FeaturedPosts
         featuredPosts={featuredPostsResponse?.getFeaturedPosts || []}

@@ -11,7 +11,7 @@ const About = () => {
     <PageLayout
       meta={
         <Meta
-          title="About | Aima's Corner"
+          title="About | Aima's Writing"
           description="Here's everything about me and my blog."
         />
       }
