@@ -49,7 +49,7 @@ const AboutBlogger = () => {
             >
               <div className="relative h-full w-full overflow-hidden border-8 border-white">
                 <Image
-                  src="/assets/images/about-image-2.png"
+                  src="/assets/images/about-blogger.JPG"
                   alt=""
                   layout="fill"
                   className="h-full w-full object-cover duration-500 group-hover:scale-110"
