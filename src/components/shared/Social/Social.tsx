@@ -28,6 +28,11 @@ const Social = () => {
           />
 
           <SocialLink
+            icon="fa6-solid:k"
+            url="https://communities.kajabi.com/aimascorner?appRedirect=vibely://clubDetails/8142d7cc-5556-4bed-990e-131955107112/true/ChatTab"
+          />
+
+          <SocialLink
             icon="mdi:email"
             url="mailto:mailto:therealaimascorner@gmail.com"
           />

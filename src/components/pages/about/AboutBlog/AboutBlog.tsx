@@ -16,11 +16,13 @@ const AboutBlog = () => {
               variant="h3"
               className="font-light md:max-w-[30ch] lg:text-[1.75rem]"
             >
-              <span className="font-semibold">Aima’s Corner</span> is sit cursus
-              id massa purus enim, mauris ac arcu quisque. Morbi non cras vitae
-              iaculis sed pellentesque mauris. Sodales at consectetur sagittis
-              non ut quis id facilisis metus. Elit dictumst imperdiet odio ut
-              urna vivamus vesti.
+              <span className="font-bold">Aima&apos;s Writing</span> is a
+              sub-brand of <span className="font-bold">Aima&apos;s Corner</span>
+              . Her goal is to birth the company&apos;s vision by focusing on
+              transforming the lives of her readers primarily through writing.{' '}
+              <span className="font-bold">Aima&apos;s Writing</span> encompasses
+              newsletters, articles, books, and literary works of art. This blog
+              is a medium to achieve this goal.
             </Heading>
           </div>
 

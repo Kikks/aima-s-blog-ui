@@ -14,7 +14,7 @@ const SocialLink: FC<SocialLinkProps> = ({ icon, url }) => {
     >
       <Icon
         icon={icon}
-        className="text-3xl text-secondary-main duration-200 group-hover:text-white"
+        className="text-xl text-secondary-main duration-200 group-hover:text-white lg:text-3xl"
       />
     </a>
   );

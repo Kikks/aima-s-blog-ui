@@ -12,23 +12,32 @@ const AboutBlogger = () => {
         </Heading>
 
         <div className="flex w-full flex-col items-center justify-between gap-10 md:flex-row">
-          <div className="order-2 flex-1 md:order-1">
+          <div className="order-2 grid flex-1 gap-5 md:order-1">
             <Text className="max-w-[48ch] font-light leading-loose">
-              My name is{' '}
-              <span className="font-semibold">Oyekpen Testimony Aimalohi</span>.
-              There was once a little corner in my head where inquisity
-              conceived. I nurtured that inquisity all through high school and
-              until my first year in the university. At the end of my second
-              year, it was my due date... &quot;and so the birth of Aima&apos;s
-              Corner.&quot; I am primarily a lot of things. I mean where do I
-              even start. I am an athlete, a model, an influencer, a tutor,
-              sike, I’m none of those things. The indisputable truth however
-              remains that I am these 5 emojis: I am a Christian, a dancer, a
-              girl with a nice voice she should use more, a writer and a
-              potential actress. Welcome to my lifestyle blog with premium
-              content, insightful articles and of course, a place where you can
-              get to be you I assure you this blog will definitely be worth your
-              time.
+              Oyekpen Testimony Aimalohi is the founder and owner of Aima&apos;s
+              Corner. She is a Christian with a vision for a revolutionary
+              change in the entertainment industry. She is a budding lawyer who
+              is passionate about humanitarian work. This passion led to her
+              current position at Safe Haven for Counselling Initiative, a
+              non-governmental organization that counsels and empowers.
+            </Text>
+            <Text className="max-w-[48ch] font-light leading-loose">
+              Asides from the wig, her interests can be found in singing,
+              dancing, and acting. She is a young lady dedicated to sharing the
+              knowledge she unravels as she finds her feet in life and ministry.
+              She runs this lifestyle blog to birth those desires.
+            </Text>
+            <Text className="max-w-[48ch] font-light leading-loose">
+              Aima clamours for excellence and resourcefulness. She shows this
+              in every sphere of her life from her academic zeal to belonging to
+              faculty organizations, to actively serving in church, to her jobs,
+              past and present. The track record of her previous websites
+              solidifies this truth and reveals the importance she places on
+              translating that excellence to her company.
+            </Text>
+            <Text className="max-w-[48ch] font-light leading-loose">
+              Strap in and be prepared to watch Aima bring out the YOU in you
+              through Aima’s Writing.{' '}
             </Text>
           </div>
 
