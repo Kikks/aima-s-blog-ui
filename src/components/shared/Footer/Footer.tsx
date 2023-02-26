@@ -10,7 +10,9 @@ const Footer = () => {
         <Text>&copy; 2022</Text>
         <Text>All Rights Reserved</Text>
         <Link href="/privacy-policy">
-          <Text>Privacy Policy</Text>
+          <a>
+            <Text>Privacy Policy</Text>
+          </a>
         </Link>
       </div>
     </footer>
