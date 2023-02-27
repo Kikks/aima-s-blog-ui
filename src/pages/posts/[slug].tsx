@@ -70,7 +70,7 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
   const postPreview = postResponse?.getPost?.post?.preview || '';
   const postImage =
     postResponse?.getPost?.post?.coverImage || '/assets/images/logo.png';
-  const postCreatedAt = postResponse?.getPost?.post?.createdAt || '';
+  const publishedAt = postResponse?.getPost?.post?.publishedAt || '';
   const postAudio = postResponse?.getPost?.post?.audio || '';
   const postBody =
     postResponse?.getPost?.post?.body ||
@@ -137,7 +137,7 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
 
         <section className="mx-auto w-full max-w-[900px] px-5">
           <Text variant="caption" className="text-center text-primary-main">
-            {moment(Number(postCreatedAt || '')).format('MMMM DD, YYYY')}
+            {moment(Number(publishedAt || '')).format('MMMM DD, YYYY')}
           </Text>
         </section>
 
