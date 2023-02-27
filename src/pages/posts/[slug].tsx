@@ -5,6 +5,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 
 import Text from '@/components/lib/Text';
 import LikeAndComment from '@/components/pages/post/LikeAndComment';
@@ -142,10 +143,11 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
 
         {!isEmpty(postAudio) && (
           <section className="mx-auto grid h-20 w-full max-w-[900px] place-items-center px-5">
-            <audio controls className="w-full max-w-[500px]">
-              <source src={postAudio} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
+            <ReactAudioPlayer
+              src={postAudio}
+              controls
+              className="w-full max-w-[500px]"
+            />
           </section>
         )}
 

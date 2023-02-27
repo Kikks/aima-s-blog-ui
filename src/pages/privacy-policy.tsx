@@ -566,8 +566,6 @@ const PrivacyPolicy = () => {
           </li>
         </ul>
       </div>
-
-      {/* <div className="grid w-full gap-5"></div> */}
     </main>
   );
 };
