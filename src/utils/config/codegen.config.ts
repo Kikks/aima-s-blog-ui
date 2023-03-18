@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config: CodegenConfig = {
+  overwrite: true,
   schema: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`,
   documents: ['src/**/*.mutations.ts', 'src/**/*.queries.ts'],
   generates: {
