@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import moment from 'moment';
 import type { FC } from 'react';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 import Avatar from '@/components/lib/Avatar';
@@ -12,13 +12,15 @@ import Loader from '@/components/lib/Loader';
 import Pagination from '@/components/lib/Pagination';
 import Text from '@/components/lib/Text';
 import TextArea from '@/components/lib/TextArea';
-import { UserContext } from '@/contexts/user';
 import type {
   Comment as IComment,
   Meta,
 } from '@/graphql/__generated__/graphql';
 import { COMMENT_ON_COMMENT } from '@/graphql/mutations/likeAndComment.mutations';
-import { GET_COMMENT_COMMENTS } from '@/graphql/queries/likeAndComment.queries';
+import {
+  GET_COMMENT_COMMENTS,
+  GET_COMMENT_LIKES_AND_COMMENTS_COUNT,
+} from '@/graphql/queries/likeAndComment.queries';
 import { defaultMeta } from '@/utils/constants';
 import trimString from '@/utils/trimString';
 import { isEmpty } from '@/utils/validators/helpers';
@@ -31,7 +33,6 @@ const CommentDetails: FC<CommentDetailsProps> = ({
   handleClose,
   handleClearSelectedComment,
 }) => {
-  const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState('');
   const [comments, setComments] = useState<(IComment | null)[]>([]);
   const [meta, setMeta] = useState<Meta>(defaultMeta);
@@ -56,6 +57,12 @@ const CommentDetails: FC<CommentDetailsProps> = ({
         refetchComments();
         setNewComment('');
       },
+      refetchQueries: [
+        {
+          query: GET_COMMENT_LIKES_AND_COMMENTS_COUNT,
+          variables: { commentId: comment?.id },
+        },
+      ],
       onError(error) {
         toast.error(error?.message);
       },
@@ -98,10 +105,15 @@ const CommentDetails: FC<CommentDetailsProps> = ({
       {comment && (
         <div className="grid max-h-[150px] w-full content-start gap-5 overflow-y-auto border-b border-aima-black px-5 pb-3">
           <div className="flex w-full items-center gap-3">
-            <Avatar name={`${user?.name}`} image={user?.image || undefined} />
+            <Avatar
+              name={`${comment?.user?.name}`}
+              image={comment?.user?.image || undefined}
+            />
 
             <div className="">
-              <Text variant="caption">{trimString(user?.name || '', 50)}</Text>
+              <Text variant="caption">
+                {trimString(comment?.user?.name || '', 50)}
+              </Text>
               <Text className="text-xxs">
                 {moment(Number(comment?.createdAt || '')).format(
                   'MMMM DD, YYYY'
