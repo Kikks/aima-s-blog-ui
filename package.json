@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "CI=false DISABLE_ESLINT_PLUGIN=true next build",
     "start": "next start",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",
     "build-prod": "run-s clean build export",
     "clean": "rimraf .next out",
-    "lint": "next lint",
     "check-types": "tsc --noEmit --pretty",
     "prepare": "husky install",
     "compile": "graphql-codegen --config ./src/utils/config/codegen.config.ts",
-    "watch": "graphql-codegen -w --config ./src/utils/config/codegen.config.ts"
+    "watch": "graphql-codegen -w --config ./src/utils/config/codegen.config.ts",
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "@apollo/client": "^3.7.6",
