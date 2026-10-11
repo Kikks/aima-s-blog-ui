@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import React from 'react';
@@ -8,6 +7,7 @@ import match from '@/utils/match';
 import trimString from '@/utils/trimString';
 
 import Button from '../Button';
+import CloudImage from '../CloudImage';
 import Heading from '../Heading';
 import Text from '../Text';
 import styles from './FeaturedPost.module.scss';
@@ -31,6 +31,7 @@ const FeaturedPost: FC<FeaturedPostProps> = ({
   post,
   theme,
   variant = 'short',
+  priority = false,
 }) => {
   const variantBase = match(variant, {
     short: styles.base,
@@ -95,12 +96,17 @@ const FeaturedPost: FC<FeaturedPostProps> = ({
         "
       >
         <div className="relative h-full w-full overflow-hidden border-[6px] border-white">
-          <Image
+          <CloudImage
             src={post?.coverImage || '/assets/images/logo.png'}
             alt={post?.title || ''}
             layout="fill"
+            sizes={
+              variant === 'long'
+                ? '(min-width: 1024px) 600px, (min-width: 475px) 200px, 100vw'
+                : '(min-width: 1024px) 300px, (min-width: 475px) 200px, 100vw'
+            }
+            priority={priority}
             className="h-full w-full object-cover duration-500 group-hover:scale-110"
-            quality={100}
           />
         </div>
       </motion.figure>

@@ -2,12 +2,36 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import type { FC } from 'react';
 import { useMemo } from 'react';
 
+import { optimiseCloudinaryImage } from '@/utils/cloudinary';
+
 import styles from './PostBody.module.scss';
 import type PostBodyProps from './PostBody.props';
 
+const BODY_IMAGE_WIDTH = 1280;
+
 const PostBody: FC<PostBodyProps> = ({ body }) => {
   const editorObject = useMemo(() => {
-    return JSON.parse(body);
+    const data = JSON.parse(body);
+
+    // Body images render in a 640px column; 1280px covers 2x screens.
+    (data?.blocks || []).forEach((block: any) => {
+      if (block?.type !== 'image') return;
+
+      if (block?.data?.file?.url) {
+        block.data.file.url = optimiseCloudinaryImage(
+          block.data.file.url,
+          BODY_IMAGE_WIDTH
+        );
+      }
+      if (block?.data?.url) {
+        block.data.url = optimiseCloudinaryImage(
+          block.data.url,
+          BODY_IMAGE_WIDTH
+        );
+      }
+    });
+
+    return data;
   }, [body]);
 
   return (

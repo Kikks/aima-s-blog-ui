@@ -1,5 +1,4 @@
 import moment from 'moment';
-import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import React from 'react';
@@ -7,6 +6,7 @@ import React from 'react';
 import trimString from '@/utils/trimString';
 
 import Button from '../Button';
+import CloudImage from '../CloudImage';
 import Text from '../Text';
 import type PostProps from './Post.props';
 
@@ -21,10 +21,11 @@ const Post: FC<PostProps> = ({
   return (
     <article className="group flex h-full w-full flex-col items-start gap-5  rounded-md bg-white p-5 shadow-md">
       <figure className="relative aspect-video w-full overflow-hidden">
-        <Image
+        <CloudImage
           src={coverImage || '/assets/images/logo.png'}
           alt={title || ''}
           layout="fill"
+          sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
           className="h-full w-full object-cover duration-500 group-hover:rotate-[3deg] group-hover:scale-110"
         />
       </figure>

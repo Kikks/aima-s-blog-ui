@@ -2,11 +2,11 @@ import { Icon } from '@iconify/react';
 import request from 'graphql-request';
 import moment from 'moment';
 import type { GetServerSideProps, NextPage } from 'next';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 
+import CloudImage from '@/components/lib/CloudImage';
 import Text from '@/components/lib/Text';
 import LikeAndComment from '@/components/pages/post/LikeAndComment';
 import PostBody from '@/components/pages/post/PostBody';
@@ -17,6 +17,7 @@ import { GET_POST } from '@/graphql/queries/post.queries';
 import PageLayout from '@/layouts/PageLayout';
 import Meta from '@/templates/Meta';
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
+import { optimiseCloudinaryImage } from '@/utils/cloudinary';
 import { grahpQLApiUri } from '@/utils/constants';
 import { isEmpty } from '@/utils/validators/helpers';
 
@@ -97,7 +98,7 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
           description={postPreview}
           images={[
             {
-              url: postImage,
+              url: optimiseCloudinaryImage(postImage, 1200),
               alt: postTitle,
             },
           ]}
@@ -125,12 +126,13 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
 
         <section className="mx-auto grid w-full max-w-[900px] place-items-center">
           <figure className="relative aspect-video w-full">
-            <Image
+            <CloudImage
               src={postImage}
               alt={postTitle}
               layout="fill"
+              sizes="(min-width: 900px) 900px, 100vw"
+              priority
               className="h-full w-full object-cover duration-500 group-hover:scale-110"
-              quality={100}
             />
           </figure>
         </section>

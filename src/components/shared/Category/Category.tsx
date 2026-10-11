@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import React from 'react';
 
 import Button from '@/components/lib/Button';
+import CloudImage from '@/components/lib/CloudImage';
 import Heading from '@/components/lib/Heading';
 
 import type CategoryProps from './Category.props';
@@ -12,15 +12,15 @@ const Category: FC<CategoryProps> = ({ id, name, image }) => {
   return (
     <div className="relative grid aspect-square w-full place-items-center overflow-hidden rounded-md p-10">
       <figure className="absolute top-0 left-0 z-0 h-full w-full overflow-hidden">
-        <Image
+        <CloudImage
           src={image || '/assets/images/logo.png'}
           alt=""
           layout="fill"
+          sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
           objectFit={image ? 'cover' : 'contain'}
           className={`h-full w-full duration-500 group-hover:rotate-[3deg] group-hover:scale-110 ${
             image ? 'object-cover' : 'object-contain'
           }`}
-          quality={100}
         />
       </figure>
 
