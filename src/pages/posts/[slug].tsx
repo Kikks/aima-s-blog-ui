@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
 import request from 'graphql-request';
-import moment from 'moment';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -18,7 +17,8 @@ import PageLayout from '@/layouts/PageLayout';
 import Meta from '@/templates/Meta';
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
 import { optimiseCloudinaryImage } from '@/utils/cloudinary';
-import { grahpQLApiUri } from '@/utils/constants';
+import { grahpQLApiUri, ssrCacheControl } from '@/utils/constants';
+import formatDate from '@/utils/formatDate';
 import { isEmpty } from '@/utils/validators/helpers';
 
 type SinglePostPageProps = {
@@ -33,6 +33,8 @@ export const getServerSideProps: GetServerSideProps<
     const postResponse = await request(grahpQLApiUri, GET_POST, {
       slug: context?.params?.slug as string,
     });
+
+    context.res.setHeader('Cache-Control', ssrCacheControl);
 
     return {
       props: {
@@ -139,7 +141,7 @@ const SinglePost: NextPage<SinglePostPageProps> = ({
 
         <section className="mx-auto w-full max-w-[900px] px-5">
           <Text variant="caption" className="text-center text-primary-main">
-            {moment(Number(publishedAt || '')).format('MMMM DD, YYYY')}
+            {formatDate(publishedAt)}
           </Text>
         </section>
 

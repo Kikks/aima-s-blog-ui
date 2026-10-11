@@ -1,8 +1,8 @@
-import moment from 'moment';
 import Link from 'next/link';
 import type { FC } from 'react';
 import React from 'react';
 
+import formatDate from '@/utils/formatDate';
 import trimString from '@/utils/trimString';
 
 import Button from '../Button';
@@ -51,7 +51,7 @@ const Post: FC<PostProps> = ({
           </Link>
 
           <Text variant="caption" className="text-primary-main">
-            {moment(Number(publishedAt || '')).format('MMMM DD, YYYY')}
+            {formatDate(publishedAt)}
           </Text>
         </div>
       </div>
