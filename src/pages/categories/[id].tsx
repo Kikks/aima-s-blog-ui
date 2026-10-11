@@ -16,6 +16,7 @@ import PageLayout from '@/layouts/PageLayout';
 import Meta from '@/templates/Meta';
 import type IPost from '@/types/Post.type';
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
+import { optimiseCloudinaryImage } from '@/utils/cloudinary';
 import { defaultMeta, grahpQLApiUri } from '@/utils/constants';
 
 type CategoryPageProps = {
@@ -83,7 +84,7 @@ const CategoryPosts: NextPage<CategoryPageProps> = ({
           description={`All posts belonging to the ${categoryName} category`}
           images={[
             {
-              url: categoryImage,
+              url: optimiseCloudinaryImage(categoryImage, 1200),
               alt: categoryName,
             },
           ]}

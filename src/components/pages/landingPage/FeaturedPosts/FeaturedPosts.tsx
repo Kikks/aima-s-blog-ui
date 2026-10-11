@@ -17,6 +17,7 @@ const FeaturedPosts: FC<FeaturedPostsProps> = ({ featuredPosts }) => {
             post={featuredPost?.post || null}
             theme={featuredPost?.theme || null}
             variant={featuredPost?.index === 0 ? 'long' : 'short'}
+            priority={index === 0}
           />
         ))}
       </div>
