@@ -8,6 +8,12 @@ class MyDocument extends Document {
     return (
       <Html lang={appConfig.locale}>
         <Head>
+          {/* Styles */}
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css"
+          />
+
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
