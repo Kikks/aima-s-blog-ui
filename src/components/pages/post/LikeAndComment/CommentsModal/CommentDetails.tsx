@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
-import moment from 'moment';
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -22,6 +21,7 @@ import {
   GET_COMMENT_LIKES_AND_COMMENTS_COUNT,
 } from '@/graphql/queries/likeAndComment.queries';
 import { defaultMeta } from '@/utils/constants';
+import formatDate from '@/utils/formatDate';
 import trimString from '@/utils/trimString';
 import { isEmpty } from '@/utils/validators/helpers';
 
@@ -114,11 +114,7 @@ const CommentDetails: FC<CommentDetailsProps> = ({
               <Text variant="caption">
                 {trimString(comment?.user?.name || '', 50)}
               </Text>
-              <Text className="text-xxs">
-                {moment(Number(comment?.createdAt || '')).format(
-                  'MMMM DD, YYYY'
-                )}
-              </Text>
+              <Text className="text-xxs">{formatDate(comment?.createdAt)}</Text>
             </div>
           </div>
 

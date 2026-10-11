@@ -17,7 +17,7 @@ import Meta from '@/templates/Meta';
 import type IPost from '@/types/Post.type';
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
 import { optimiseCloudinaryImage } from '@/utils/cloudinary';
-import { defaultMeta, grahpQLApiUri } from '@/utils/constants';
+import { defaultMeta, grahpQLApiUri, ssrCacheControl } from '@/utils/constants';
 
 type CategoryPageProps = {
   categoryResponse: GetCategoryQuery | null;
@@ -31,6 +31,8 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
     const categoryResponse = await request(grahpQLApiUri, GET_CATEGORY, {
       categoryId: context?.params?.id as string,
     });
+
+    context.res.setHeader('Cache-Control', ssrCacheControl);
 
     return {
       props: {

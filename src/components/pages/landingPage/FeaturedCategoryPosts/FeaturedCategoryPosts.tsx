@@ -8,11 +8,16 @@ import type IPost from '@/types/Post.type';
 
 import type FeaturedCategoryProps from './FeaturedCategoryPosts.props';
 
-const FeaturedCategoryPosts: FC<FeaturedCategoryProps> = ({ id, name }) => {
-  const [posts, setPosts] = useState<(IPost | null)[]>([]);
+const FeaturedCategoryPosts: FC<FeaturedCategoryProps> = ({
+  id,
+  name,
+  initialPosts,
+}) => {
+  const [posts, setPosts] = useState<(IPost | null)[]>(initialPosts || []);
 
   const { loading } = useQuery(GET_POSTS, {
     variables: { limit: 3, page: 1, category: id },
+    skip: !!initialPosts,
     onCompleted(response) {
       setPosts(response?.getPosts?.data || []);
     },

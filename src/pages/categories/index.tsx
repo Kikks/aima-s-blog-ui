@@ -11,7 +11,7 @@ import type { GetCategoriesQuery } from '@/graphql/__generated__/graphql';
 import { GET_CATEGORIES } from '@/graphql/queries/category.queries';
 import PageLayout from '@/layouts/PageLayout';
 import Meta from '@/templates/Meta';
-import { grahpQLApiUri } from '@/utils/constants';
+import { grahpQLApiUri, ssrCacheControl } from '@/utils/constants';
 
 type CategoryPageProps = {
   categoryResponse: GetCategoriesQuery | null;
@@ -19,12 +19,14 @@ type CategoryPageProps = {
 
 export const getServerSideProps: GetServerSideProps<
   CategoryPageProps
-> = async () => {
+> = async ({ res }) => {
   try {
     const categoryResponse = await request(grahpQLApiUri, GET_CATEGORIES, {
       limit: 50,
       page: 1,
     });
+
+    res.setHeader('Cache-Control', ssrCacheControl);
 
     return {
       props: {

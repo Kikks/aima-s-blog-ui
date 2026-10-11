@@ -8,16 +8,6 @@ class MyDocument extends Document {
     return (
       <Html lang={appConfig.locale}>
         <Head>
-          {/* Styles */}
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-          />
-          <link
-            rel="stylesheet"
-            href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css"
-          />
-
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
@@ -26,7 +16,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Ephesis&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Ephesis&display=swap"
             rel="stylesheet"
           />
         </Head>

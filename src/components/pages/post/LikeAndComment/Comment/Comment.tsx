@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
-import moment from 'moment';
 import type { FC } from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -21,6 +20,7 @@ import {
 } from '@/graphql/queries/likeAndComment.queries';
 import { useToggle } from '@/hooks';
 import { MAX_LENGTH_OF_COMMENT_CHARACTERS } from '@/utils/constants';
+import formatDate from '@/utils/formatDate';
 import trimString from '@/utils/trimString';
 
 import type CommentProps from './Comment.props';
@@ -137,9 +137,7 @@ const Comment: FC<CommentProps> = ({
 
           <div className="">
             <Text variant="caption">{trimString(user?.name || '', 50)}</Text>
-            <Text className="text-xxs">
-              {moment(Number(createdAt || '')).format('MMMM DD, YYYY')}
-            </Text>
+            <Text className="text-xxs">{formatDate(createdAt)}</Text>
           </div>
         </div>
 

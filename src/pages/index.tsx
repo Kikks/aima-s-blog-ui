@@ -15,24 +15,51 @@ import { GET_FEATURED_POSTS, GET_POSTS } from '@/graphql/queries/post.queries';
 import PageLayout from '@/layouts/PageLayout';
 import Meta from '@/templates/Meta';
 import type IPost from '@/types/Post.type';
-import { grahpQLApiUri } from '@/utils/constants';
+import { grahpQLApiUri, ssrCacheControl } from '@/utils/constants';
 
 type HomePageProps = {
   featuredPostsResponse: FeaturedPostsQuery | null;
   featuredCategoriesResponse: GetFeaturedCategoriesQuery | null;
+  latestPosts: (IPost | null)[] | null;
+  // Latest posts per featured category id.
+  categoryPosts: Record<string, (IPost | null)[]>;
 };
 
-export const getServerSideProps: GetServerSideProps<
-  HomePageProps
-> = async () => {
+const getLatestPosts = async (category?: string) => {
+  const response = await request(grahpQLApiUri, GET_POSTS, {
+    limit: 3,
+    page: 1,
+    ...(category ? { category } : {}),
+  });
+
+  return response?.getPosts?.data || [];
+};
+
+export const getServerSideProps: GetServerSideProps<HomePageProps> = async ({
+  res,
+}) => {
   try {
-    const featuredPostsResponse = await request(
-      grahpQLApiUri,
-      GET_FEATURED_POSTS
-    );
-    const featuredCategoriesResponse = await request(
-      grahpQLApiUri,
-      GET_FEATURED_CATEGORIES
+    const [featuredPostsResponse, featuredCategoriesResponse, latestPosts] =
+      await Promise.all([
+        request(grahpQLApiUri, GET_FEATURED_POSTS),
+        request(grahpQLApiUri, GET_FEATURED_CATEGORIES),
+        getLatestPosts(),
+      ]);
+
+    // A category whose posts fail to load here is fetched in the browser.
+    const categoryPosts: HomePageProps['categoryPosts'] = {};
+    await Promise.all(
+      (featuredCategoriesResponse?.getFeaturedCategories || []).map(
+        async (category) => {
+          if (!category?.id) return;
+
+          try {
+            categoryPosts[category.id] = await getLatestPosts(category.id);
+          } catch (error) {
+            // Falls back to the client-side query.
+          }
+        }
+      )
     );
 
     if (featuredPostsResponse?.getFeaturedPosts) {
@@ -42,10 +69,14 @@ export const getServerSideProps: GetServerSideProps<
         ) || [];
     }
 
+    res.setHeader('Cache-Control', ssrCacheControl);
+
     return {
       props: {
         featuredPostsResponse,
         featuredCategoriesResponse,
+        latestPosts,
+        categoryPosts,
       },
     };
   } catch (error) {
@@ -53,6 +84,8 @@ export const getServerSideProps: GetServerSideProps<
       props: {
         featuredPostsResponse: null,
         featuredCategoriesResponse: null,
+        latestPosts: null,
+        categoryPosts: {},
       },
     };
   }
@@ -61,11 +94,14 @@ export const getServerSideProps: GetServerSideProps<
 const Index: NextPage<HomePageProps> = ({
   featuredCategoriesResponse,
   featuredPostsResponse,
+  latestPosts,
+  categoryPosts,
 }) => {
-  const [posts, setPosts] = useState<(IPost | null)[]>([]);
+  const [posts, setPosts] = useState<(IPost | null)[]>(latestPosts || []);
 
   const { loading } = useQuery(GET_POSTS, {
     variables: { limit: 3, page: 1 },
+    skip: !!latestPosts,
     onCompleted(response) {
       setPosts(response?.getPosts?.data || []);
     },
@@ -88,7 +124,11 @@ const Index: NextPage<HomePageProps> = ({
 
       {(featuredCategoriesResponse?.getFeaturedCategories || []).map(
         (category, index) => (
-          <FeaturedCategoryPosts {...category} key={index} />
+          <FeaturedCategoryPosts
+            {...category}
+            initialPosts={categoryPosts[category?.id || '']}
+            key={index}
+          />
         )
       )}
     </PageLayout>
